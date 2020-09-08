@@ -3,6 +3,20 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import { Dialog, Button, Form, FormItem, Input, Card, Tabs, TabPane, Message, Select, Option, Popover } from 'element-ui'
+Vue.use(Dialog)
+Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Card)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Popover)
+Vue.prototype.$message = Message
+
 Vue.config.productionTip = false
 
 new Vue({

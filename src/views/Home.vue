@@ -1,18 +1,40 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <Recommend v-if="isLogin"/>
+    <SignIn v-else @onLoginSuccess="onLoginSuccess"/>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-
-@Component({
+<script>
+import SignIn from '../components/SignIn'
+import Recommend from '../components/Recommend'
+import { getLoginInfo } from '../common/login'
+export default {
+  data () {
+    return {
+      isLogin: false
+    }
+  },
   components: {
-    HelloWorld
+    SignIn,
+    Recommend
+  },
+  created () {
+    const loginInfo = getLoginInfo()
+    if (loginInfo.token && loginInfo.id) {
+      this.isLogin = true
+    } else {
+      this.isLogin = false
+    }
+  },
+  methods: {
+    onLoginSuccess () {
+      this.isLogin = true
+    }
   }
-})
-export default class Home extends Vue {}
+}
 </script>
+
+<style scoped lang="scss">
+
+</style>
